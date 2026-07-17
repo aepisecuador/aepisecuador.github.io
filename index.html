@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AEPIS Ecuador: Astrofísica y Educación para la Inclusión Social.">
+  <title>AEPIS Ecuador</title>
+
+  <style>
+    /* =========================================================
+       AEPIS ECUADOR — ESTILOS PRINCIPALES
+       Para cambiar la paleta, edita solamente estas variables.
+       Los colores se tomaron del logo de AEPIS.
+       ========================================================= */
+    :root {
+      --morado: #4d0a4d;
+      --morado-oscuro: #320432;
+      --morado-claro: #f3eaf3;
+      --naranja: #f9862b;
+      --naranja-claro: #fff1e5;
+      --crema: #fffaf6;
+      --blanco: #ffffff;
+      --texto: #302a30;
+      --texto-suave: #655d65;
+      --borde: #e5dce5;
+      --sombra: 0 14px 35px rgba(77, 10, 77, 0.12);
+      --radio: 20px;
+      --ancho: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      line-height: 1.65;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .contenedor {
+      width: min(92%, var(--ancho));
+      margin-inline: auto;
+    }
+
+    .seccion {
+      padding: 88px 0;
+      scroll-margin-top: 90px;
+    }
+
+    .seccion-suave {
+      background: var(--crema);
+    }
+
+    .etiqueta {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--naranja);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      color: var(--morado);
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5.4rem);
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      letter-spacing: -0.035em;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.28rem;
+      margin-bottom: 10px;
+    }
+
+    .intro-seccion {
+      max-width: 760px;
+      margin-bottom: 42px;
+      color: var(--texto-suave);
+      font-size: 1.08rem;
+    }
+
+    .boton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 2px solid var(--morado);
+      background: var(--morado);
+      color: var(--blanco);
+      font-weight: 750;
+      transition: 0.2s ease;
+    }
+
+    .boton:hover,
+    .boton:focus-visible {
+      transform: translateY(-2px);
+      background: var(--morado-oscuro);
+      border-color: var(--morado-oscuro);
+    }
+
+    .boton-secundario {
+      background: transparent;
+      color: var(--morado);
+    }
+
+    .boton-secundario:hover,
+    .boton-secundario:focus-visible {
+      color: var(--blanco);
+    }
+
+    /* ---------------- NAVEGACIÓN ---------------- */
+    .cabecera {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(77, 10, 77, 0.1);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--morado);
+      font-weight: 850;
+      letter-spacing: 0.03em;
+    }
+
+    .marca img {
+      width: 125px;
+      height: 52px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .menu a {
+      color: var(--morado);
+      transition: color 0.2s ease;
+    }
+
+    .menu a:hover,
+    .menu a:focus-visible {
+      color: var(--naranja);
+    }
+
+    .menu-boton {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--morado);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* ---------------- PORTADA ---------------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 92px 0 86px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(249, 134, 43, 0.18), transparent 25%),
+        radial-gradient(circle at 10% 90%, rgba(77, 10, 77, 0.12), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #fffaf6 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "✦";
+      position: absolute;
+      color: var(--naranja);
+      opacity: 0.25;
+      font-size: 11rem;
+      line-height: 1;
+    }
+
+    .hero::before {
+      top: 10px;
+      right: 5%;
+    }
+
+    .hero::after {
+      bottom: -55px;
+      left: 2%;
+      color: var(--morado);
+      font-size: 8rem;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 68px;
+    }
+
+    .hero-texto p {
+      max-width: 720px;
+      margin: 24px 0 30px;
+      color: var(--texto-suave);
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+    }
+
+    .hero-acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-logo {
+      padding: 32px;
+      background: var(--blanco);
+      border: 1px solid rgba(77, 10, 77, 0.1);
+      border-radius: 30px;
+      box-shadow: var(--sombra);
+      transform: rotate(1deg);
+    }
+
+    .hero-logo img {
+      width: 100%;
+      aspect-ratio: 5 / 4;
+      object-fit: contain;
+    }
+
+    /* ---------------- BLOQUES ---------------- */
+    .dos-columnas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .tarjeta-destacada {
+      padding: 32px;
+      border-left: 6px solid var(--naranja);
+      border-radius: 0 var(--radio) var(--radio) 0;
+      background: var(--morado-claro);
+    }
+
+    .tarjeta-destacada p + p {
+      margin-top: 14px;
+    }
+
+    .rejilla-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .tarjeta {
+      height: 100%;
+      padding: 30px;
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      box-shadow: 0 10px 24px rgba(77, 10, 77, 0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra);
+    }
+
+    .icono {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 16px;
+      background: var(--naranja-claro);
+      color: var(--naranja);
+      font-size: 1.55rem;
+    }
+
+    .tarjeta p {
+      color: var(--texto-suave);
+    }
+
+    .enlace-tarjeta {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--morado);
+      font-weight: 800;
+    }
+
+    .enlace-tarjeta:hover {
+      color: var(--naranja);
+    }
+
+    /* ---------------- IMPACTO ---------------- */
+    .impacto {
+      color: var(--blanco);
+      background: var(--morado);
+    }
+
+    .impacto h2,
+    .impacto h3 {
+      color: var(--blanco);
+    }
+
+    .impacto .etiqueta {
+      color: #ffb67e;
+    }
+
+    .impacto .intro-seccion {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .cifras {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .cifra {
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-radius: var(--radio);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .cifra strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--naranja);
+      font-size: 2.35rem;
+      line-height: 1;
+    }
+
+    .cifra span {
+      color: rgba(255, 255, 255, 0.83);
+    }
+
+    /* ---------------- PROJECT ---------------- */
+    .project-logo{
+    width:140px;      /* ancho del recuadro */
+    height:140px;     /* alto del recuadro */
+    object-fit:contain;
+    display:block;
+    margin:0 auto 20px;
+    }
+    /* ---------------- EQUIPO ---------------- */
+    .equipo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .persona {
+      overflow: hidden;
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+    }
+
+    .foto-placeholder {
+      min-height: 250px;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(249, 134, 43, 0.32), transparent 25%),
+        linear-gradient(135deg, var(--morado-claro), #fff4e8);
+      color: var(--morado);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .persona-info {
+      padding: 24px;
+    }
+
+    .cargo {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--naranja);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .persona p {
+      color: var(--texto-suave);
+    }
+
+    /* ---------------- PARTNERS ---------------- */
+  .partners-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:35px;
+      align-items:center;
+      justify-items:center;
+      margin-top:40px;
+  }
+
+  .partner-logo{
+      max-width:440px;
+      max-height:240px;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      transition:.25s;
+      opacity:.85;
+  }
+
+
+
+  .partner-logo{
+    filter:grayscale(100%);
+    opacity:.9;
+    transition:.2s;
+}
+
+.partner-logo:hover{
+    filter:none;
+    opacity:1;
+    transform:scale(1.05);
+}
+
+    /* ---------------- COLABORACIÓN / CONTACTO ---------------- */
+    .llamada {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 38px;
+      padding: 48px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--morado) 0%, #6a126a 100%);
+      color: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .llamada h2 {
+      color: var(--blanco);
+    }
+
+    .llamada p {
+      color: rgba(255, 255, 255, 0.83);
+    }
+
+    .llamada .boton {
+      background: var(--naranja);
+      border-color: var(--naranja);
+      color: var(--morado-oscuro);
+    }
+
+    .llamada .boton:hover {
+      background: #ff9f58;
+      border-color: #ff9f58;
+    }
+
+    .contacto-lista {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .contacto-lista a {
+      font-weight: 700;
+    }
+
+    /* ---------------- PIE ---------------- */
+    footer {
+      padding: 34px 0;
+      border-top: 1px solid var(--borde);
+      background: var(--blanco);
+    }
+
+    .pie {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--texto-suave);
+      font-size: 0.92rem;
+    }
+
+    .pie strong {
+      color: var(--morado);
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media (max-width: 900px) {
+      .menu-boton {
+        display: block;
+      }
+
+      .menu {
+        position: absolute;
+        top: 78px;
+        left: 4%;
+        right: 4%;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px;
+        background: var(--blanco);
+        border: 1px solid var(--borde);
+        border-radius: 18px;
+        box-shadow: var(--sombra);
+      }
+
+      .menu.activo {
+        display: flex;
+      }
+
+      .menu a {
+        display: block;
+        padding: 12px 10px;
+      }
+
+      .hero-grid,
+      .dos-columnas,
+      .llamada {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-logo {
+        max-width: 620px;
+      }
+
+      .rejilla-3,
+      .equipo-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cifras {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .seccion {
+        padding: 68px 0;
+      }
+
+      .hero {
+        padding: 64px 0;
+      }
+
+      .marca span {
+        display: none;
+      }
+
+      .marca img {
+        width: 112px;
+      }
+
+      .rejilla-3,
+      .equipo-grid,
+      .cifras {
+        grid-template-columns: 1fr;
+      }
+
+      .llamada,
+      .tarjeta-destacada {
+        padding: 28px;
+      }
+
+      .pie {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+
+
+<body>
+  <!-- =========================================================
+       CABECERA Y MENÚ
+       Para cambiar el nombre de una pestaña, edita el texto del enlace.
+       ========================================================= -->
+  <header class="cabecera">
+    <nav class="nav contenedor" aria-label="Navegación principal">
+      <a class="marca" href="#inicio" aria-label="Ir al inicio">
+        <img src="assets/AEPIS_logo.jpeg" alt="Logo de AEPIS Ecuador">
+        <span>AEPIS Ecuador</span>
+      </a>
+
+      <button class="menu-boton" type="button" aria-label="Abrir menú" aria-expanded="false">
+        ☰
+      </button>
+
+      <ul class="menu">
+        <li><a href="#quienes-somos">Quiénes somos</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#impacto">Impacto</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#participa">Participa</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         PORTADA
+         ========================================================= -->
+    <section class="hero" id="inicio">
+      <div class="contenedor hero-grid">
+        <div class="hero-texto">
+          <span class="etiqueta">Astrofísica y Educación para la Inclusión Social</span>
+          <h1>AEPIS Ecuador</h1>
+          <p>
+            AEPIS es un proyecto que busca acercar la ciencia, en especial la astrofísica, 
+            a jóvenes de todo el Ecuador, promoviendo la curiosidad, el pensamiento crítico y la inspiración. 
+            <br><br>
+            <strong>Creemos en la educación como herramienta de cambio social.</strong> 
+            Por eso, trabajamos para crear espacios más inclusivos, diversos y accesibles dentro del mundo científico.
+          </p>
+          <div class="hero-acciones">
+            <a class="boton" href="#proyectos">Conoce nuestros proyectos</a>
+            <a class="boton boton-secundario" href="#participa">Súmate a AEPIS</a>
+          </div>
+        </div>
+
+        <div class="hero-logo" aria-label="Identidad visual de AEPIS">
+          <img src="assets/AEPIS_logo.jpeg" alt="AEPIS Ecuador: Astrofísica y Educación para la Inclusión Social">
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         QUIÉNES SOMOS
+         ========================================================= -->
+    <section class="seccion" id="quienes-somos">
+      <div class="contenedor dos-columnas">
+        <div>
+          <span class="etiqueta">Quiénes somos</span>
+          <h2>Impulsando a la próxima generación de científicos ecuatorianos</h2>
+          <p class="intro-seccion">
+          <strong>AEPIS (Astrofísica y Educación para la Inclusión Social)</strong> es una iniciativa educativa 
+            fundada y dirigida por la astrofísica ecuatoriana 
+            <strong><a href="https://www.danielagalarraga.org/bio">Dr. Daniela Galárraga-Espinosa</a></strong> en 2025.
+            Nuestro propósito es acercar la ciencia y la astrofísica a niños, adolescentes y jóvenes de todo el Ecuador, 
+            inspirando nuevas vocaciones científicas y contribuyendo a una educación más inclusiva.
+          </p>
+          <p>
+            Trabajamos para que cualquier estudiante, independientemente de su lugar de origen o de las 
+            oportunidades que haya tenido, pueda descubrir su potencial, acceder a referentes científicos y 
+            recibir el acompañamiento necesario para desarrollar sus estudios, proyectos y aspiraciones profesionales.
+          </p>
+          <p>
+            En AEPIS entendemos que la ciencia no consiste únicamente en transmitir conocimientos. 
+            También implica despertar la curiosidad, fortalecer el pensamiento crítico, crear oportunidades
+            y construir una comunidad donde las nuevas generaciones puedan imaginarse formando parte del mundo científico.
+          </p>
+        </div>
+
+
+        <div class="tarjeta-destacada">
+    <h3>Nuestros objetivos</h3>
+
+    <ul class="objetivos-lista">
+        <strong>
+        <li>Acercar la ciencia y la astrofísica a jóvenes en todo el Ecuador.</li>
+        <br>
+        <li>Apoyar el desarrollo de vocaciones científicas en las nuevas generaciones.</li>
+        <br>
+        <li>Brindar mentoría y orientación a estudiantes interesados en las ciencias.</li>
+        <br>
+        <li>Promover espacios científicos más inclusivos, diversos y accesibles.</li>
+        </strong>
+    </ul>
+  </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROYECTOS
+         ========================================================= -->
+    <section class="seccion seccion-suave" id="proyectos">
+      <div class="contenedor">
+        <span class="etiqueta">Qué hacemos</span>
+        <h2>Nuestros proyectos</h2>
+        <p class="intro-seccion">
+          Desarrollamos iniciativas que combinan divulgación científica, apoyo directo
+          y acompañamiento personal. Cada proyecto responde a una necesidad concreta
+          de estudiantes y comunidades educativas del Ecuador.
+        </p>
+
+        <div class="rejilla-3">
+          <!-- PROYECTO 1 -->
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">✦</div>
+            <h3>Sembrando Estrellas</h3>
+            <img src="assets/sembrando_estrellas.jpeg" alt="Sembrando Estrellas" class="project-logo">
+            <p>
+              Encuentros para estudiantes de colegio y primeros años de universidad,
+              con charlas, testimonios y conversaciones honestas sobre ciencia,
+              trayectorias profesionales, dudas, desafíos y oportunidades.
+            </p>
+            <!-- Sustituye # por el enlace definitivo del proyecto -->
+            <a class="enlace-tarjeta" href="https://sites.google.com/view/sembrando-estrellas-ecuador/inicio" target="_blank" rel="noopener">
+              Conocer el proyecto →
+            </a>
+          </article>
+
+          <!-- PROYECTO 4 -->
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">✦</div>
+            <h3>Cosmic Explorers</h3>
+            <img src="assets/logo_cosmic_explorers.jpeg" alt="Cosmic Explorers" class="project-logo">
+            <p>
+              Una iniciativa orientada a niñas de nivel colegio que utiliza datos reales de telescopios para enseñar 
+              programación, análisis de datos y pensamiento científico, promoviendo una mayor participación femenina 
+              en las áreas STEM.
+            </p>
+            <!-- Puedes enlazar aquí un futuro formulario de mentoría -->
+            <a class="enlace-tarjeta" href="https://www.instagram.com/cosmic_explorers_ec/">Más información →</a>
+          </article>
+
+          <!-- PROYECTO 5 -->
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">✦</div>
+            <h3>Astro Camp</h3>
+            <p>
+              Un proyecto de trabajo in situ que acerca la astronomía a comunidades de todo el país, 
+              promoviendo el aprendizaje, el intercambio de experiencias y la construcción 
+              de oportunidades desde el territorio.
+            </p>
+            <!-- Puedes enlazar aquí un futuro formulario de mentoría -->
+            <!-- <a class="enlace-tarjeta" href="#contacto">Coming soon →</a> -->
+          </article>
+
+          <!-- PROYECTO 2 -->
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">◎</div>
+            <h3>Financiamiento de proyectos estudiantiles</h3>
+            <p>
+              Apoyamos iniciativas científicas y educativas lideradas por estudiantes
+              mediante pequeñas ayudas económicas, asesoría y seguimiento. Buscamos que
+              buenas ideas puedan convertirse en experiencias de aprendizaje e impacto.
+            </p>
+            <!-- Puedes enlazar aquí una futura convocatoria o formulario -->
+            <a class="enlace-tarjeta" href="#contacto">Presentar una iniciativa →</a>
+          </article>
+
+          <!-- PROYECTO 3 -->
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">↗</div>
+            <h3>Acompañamiento y mentoría</h3>
+            <p>
+              Ofrecemos orientación a estudiantes interesados en ciencia: elección de
+              estudios, búsqueda de oportunidades, preparación de candidaturas y desarrollo
+              de confianza para avanzar en su trayectoria académica.
+            </p>
+            <!-- Puedes enlazar aquí un futuro formulario de mentoría -->
+            <a class="enlace-tarjeta" href="#contacto">Solicitar acompañamiento →</a>
+          </article>
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         IMPACTO
+         Sustituye estas cifras por datos verificados cuando los tengas.
+         ========================================================= -->
+    <section class="seccion impacto" id="impacto">
+      <div class="contenedor">
+        <span class="etiqueta">Nuestro impacto</span>
+        <h2>Conectar, acompañar y abrir caminos.</h2>
+        <p class="intro-seccion">
+          Buscamos generar un impacto sostenible en el desarrollo científico del Ecuador, 
+          inspirando nuevas vocaciones, ofreciendo acompañamiento a estudiantes y fortaleciendo 
+          una comunidad científica más diversa, inclusiva y conectada.
+        </p>
+
+        <div class="cifras">
+          <div class="cifra">
+            <strong>250+</strong>
+            <span>jóvenes participantes en nuestras primeras actividades</span>
+          </div>
+          <div class="cifra">
+            <strong>3</strong>
+            <span>eventos nacionales realizado: Sembrando Estrellas 2025, Cosmic Explorers, Astro Camp</span>
+          </div>
+          <div class="cifra">
+            <strong>2</strong>
+            <span>proyectos estudiantiles apoyados</span>
+          </div>
+          <div class="cifra">
+            <strong>Todo Ecuador</strong>
+            <span>como horizonte de alcance y colaboración</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         EQUIPO
+         Sustituye los bloques de foto por imágenes reales.
+         Ejemplo:
+         <img src="assets/nombre-persona.jpg" alt="Nombre de la persona">
+         ========================================================= -->
+    <section class="seccion" id="equipo">
+      <div class="contenedor">
+        <span class="etiqueta">Las personas detrás de AEPIS</span>
+        <h2>Nuestro equipo</h2>
+        <p class="intro-seccion">
+          AEPIS reúne a personas comprometidas con la educación, la ciencia y la inclusión.
+          Aquí puedes presentar tanto al equipo permanente como a colaboradores y mentores.
+        </p>
+
+        <div class="equipo-grid">
+          <article class="persona">
+            <div class="foto-placeholder">
+              <img src="assets/foto_dani.jpeg" alt="Daniela Galárraga-Espinosa">
+            </div>
+            <div class="persona-info">
+              <h3>Dra. Daniela Galárraga-Espinosa</h3>
+              <span class="cargo">Fundadora y directora</span>
+              <p>
+                Astrofísica nacida y criada en Quito, Ecuador, y primera mujer astrofísica ecuatoriana. 
+                Realizó su doctorado en Francia y continuó su carrera científica en Alemania y Japón, donde 
+                actualmente investiga la red cósmica y los filamentos que conectan las galaxias. 
+                <br><br>
+                Como fundadora y directora de AEPIS, lidera la visión estratégica de la organización, 
+                impulsa el desarrollo de nuevos programas y establece alianzas nacionales e internacionales para 
+                ampliar el acceso a oportunidades científicas. Su trabajo busca demostrar que la ciencia puede 
+                ser una herramienta de inclusión, inspiración y transformación social.
+                <br>
+                <a class="enlace-tarjeta" href="https://www.danielagalarraga.org/bio">Descubre más sobre Daniela →</a>
+              </p>
+            </div>
+          </article>
+
+          <!-- DUPLICA ESTA TARJETA PARA AÑADIR MÁS PERSONAS -->
+          <article class="persona">
+            <div class="foto-placeholder">
+              <img src="assets/foto_daysi.jpeg" alt="Daysi">
+            </div>
+            <div class="persona-info">
+              <h3>Dra. Daysi Quinatoa</h3>
+              <span class="cargo">Coordinadora Académica y de Mentoría </span>
+              <p>
+                Astrofísica originaria de Latacunga, Ecuador. Su camino en la astronomía comenzó con una pasantía internacional, 
+                donde descubrió su interés por la interferometría y los radiotelescopios. Obtuvo su doctorado en 
+                Astrofísica en la Universidad de Valparaíso y actualmente investiga el medio interestelar de las galaxias 
+                del Universo local. <br><br>
+                En AEPIS coordina los programas académicos y de mentoría, 
+                acompañando a estudiantes en su desarrollo científico y personal. 
+                Además, impulsa iniciativas que fomentan la participación de niñas y jóvenes en la 
+                ciencia, la programación y la astronomía, promoviendo una educación más 
+                inclusiva y con enfoque de género.
+                <br>
+                <a class="enlace-tarjeta" href="https://sites.google.com/view/daysiquinatoa/inicio">Descubre más sobre Daysi →</a>
+               
+              </p>
+            </div>
+          </article>
+
+          <article class="persona">
+            <div class="foto-placeholder">
+              <img src="assets/foto_silvana.jpeg" alt="Silvana">
+            </div>
+            <div class="persona-info">
+              <h3>Dra. Silvana Delgado</h3>
+              <span class="cargo">Coordinadora de Proyectos Comunitarios y Educativos</span>
+              <p>
+                Astrofísica nacida en Guayaquil, Ecuador, cuya trayectoria académica se desarrolló entre Ecuador y 
+                Estados Unidos. Obtuvo su doctorado en Texas A&M University, donde investigó la evolución 
+                de las galaxias más masivas y los agujeros negros supermasivos que albergan. 
+                <br><br>
+                En AEPIS coordina el desarrollo de proyectos comunitarios y educativos, fortaleciendo el vínculo 
+                entre la ciencia y la sociedad. Aporta su experiencia en divulgación, liderazgo comunitario y 
+                creación de espacios inclusivos que acerquen oportunidades científicas a estudiantes y 
+                omunidades históricamente subrepresentadas.
+                <br>
+                <a class="enlace-tarjeta" href="https://sites.google.com/view/silvana-delgadoandrade/home">Descubre más sobre Silvana →</a>
+               
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         COLABORADORES
+         Puedes sustituir esta sección por logos de instituciones.
+         ========================================================= -->
+
+
+    <section class="seccion seccion-suave" id="partners">
+      <div class="contenedor">
+        <span class="etiqueta">Trabajo en comunidad</span>
+        <h2>Colaboradores</h2>
+        <p class="intro-seccion">
+          Nuestros proyectos crecen gracias a instituciones, profesionales, docentes,
+          voluntarios y comunidades que comparten la convicción de que la ciencia debe
+          ser accesible para todas las personas.
+        </p>
+
+      <div class="partners-grid">
+
+          <img src="assets/partners/logovayeca.png" class="partner-logo" alt="vayeca">
+
+          <img src="assets/partners/Logo_WomenInTech_Ecuador.png" class="partner-logo" alt="Women in Tech">
+
+          <img src="assets/partners/SF2A Logo - High Res.png" class="partner-logo" alt="SF2A">
+
+          <img src="assets/partners/logoEPN.png" class="partner-logo" alt="EPN">
+
+      </div>
+
+</section>
+
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PARTICIPA
+         ========================================================= -->
+    <section class="seccion" id="participa">
+      <div class="contenedor llamada">
+        <div>
+          <span class="etiqueta">Participa</span>
+          <h2>Ayúdanos a sembrar nuevas oportunidades.</h2>
+          <p>
+            Puedes participar como estudiante, mentor, voluntario, institución aliada
+            o donante. También puedes proponer una actividad o un proyecto estudiantil
+            que necesite acompañamiento.
+          </p>
+        </div>
+        <div>
+          <a class="boton" href="#contacto">Contactar con AEPIS</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACTO
+         IMPORTANTE: reemplaza los datos de ejemplo.
+         ========================================================= -->
+    <section class="seccion seccion-suave" id="contacto">
+      <div class="contenedor dos-columnas">
+        <div>
+          <span class="etiqueta">Contacto</span>
+          <h2>Conversemos.</h2>
+          <p class="intro-seccion">
+            Escríbenos para participar, solicitar mentoría, proponer una colaboración,
+            presentar un proyecto o apoyar nuestras actividades.
+          </p>
+        </div>
+
+        <div class="tarjeta">
+          <h3>AEPIS Ecuador</h3>
+          <div class="contacto-lista">
+            <!-- REEMPLAZA estos enlaces con tus datos reales -->
+            <a href="mailto:aepisecuador@gmail.com">✉ aepisecuador@gmail.com</a>
+            <a href="#">◎ Instagram: @aepis.ecuador</a>
+            <!-- <a href="https://www.danielagalarraga.org/aepis" target="_blank" rel="noopener">
+              ↗ Página actual del proyecto -->
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contenedor pie">
+      <p><strong>AEPIS Ecuador</strong> — Astrofísica y Educación para la Inclusión Social</p>
+      <p>© <span id="anio"></span> AEPIS. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Menú móvil */
+    const botonMenu = document.querySelector('.menu-boton');
+    const menu = document.querySelector('.menu');
+
+    botonMenu.addEventListener('click', () => {
+      const abierto = menu.classList.toggle('activo');
+      botonMenu.setAttribute('aria-expanded', abierto);
+      botonMenu.textContent = abierto ? '×' : '☰';
+    });
+
+    document.querySelectorAll('.menu a').forEach((enlace) => {
+      enlace.addEventListener('click', () => {
+        menu.classList.remove('activo');
+        botonMenu.setAttribute('aria-expanded', 'false');
+        botonMenu.textContent = '☰';
+      });
+    });
+
+    /* Año automático en el pie de página */
+    document.getElementById('anio').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
